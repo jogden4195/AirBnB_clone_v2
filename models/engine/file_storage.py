@@ -25,7 +25,14 @@ class FileStorage:
         Return:
             returns a dictionary of __object
         """
-        return self.__objects
+        if cls is not None:
+            objects = {}
+            for k, v in self.__objects.items():
+                if cls.__module__[7:].capitalize() in k:
+                    objects[k] = v
+            return objects
+        else:
+            return self.__objects
 
     def new(self, obj):
         """sets __object to given obj
@@ -62,6 +69,7 @@ class FileStorage:
         try:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
+            self.save()
         except:
             print("BRING SAD PEPE AND THICC SEAHORSE BACK")
-        #print("THE OBJECT: {}".format(obj))
+        # print("THE OBJECT: {}".format(obj))
