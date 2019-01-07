@@ -53,8 +53,8 @@ class HBNBCommand(cmd.Cmd):
                     arg_dict[arg[0]] = arg[1]
             for k, v in arg_dict.items():
                 if hasattr(obj, k):
-                    #if '"' in v[1:-1]:
-                        #v = v[1:-1].replace('"', '\"')
+                    # if '"' in v[1:-1]:
+                        # v = v[1:-1].replace('"', '\"')
                     if '_' in v:
                         v = v.replace('_', ' ')
                     if v.isdigit():
