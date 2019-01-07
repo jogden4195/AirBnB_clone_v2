@@ -39,7 +39,7 @@ class TestAmenity(unittest.TestCase):
         self.assertIsNotNone(Amenity.__doc__)
 
     def test_attributes_Amenity(self):
-        """chekcing if amenity have attibutes"""
+        """checking if amenity have attibutes"""
         self.assertTrue('id' in self.amenity.__dict__)
         self.assertTrue('created_at' in self.amenity.__dict__)
         self.assertTrue('updated_at' in self.amenity.__dict__)

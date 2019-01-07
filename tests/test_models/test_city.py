@@ -40,7 +40,7 @@ class TestCity(unittest.TestCase):
         self.assertIsNotNone(City.__doc__)
 
     def test_attributes_City(self):
-        """chekcing if City have attributes"""
+        """checking if City have attributes"""
         self.assertTrue('id' in self.city.__dict__)
         self.assertTrue('created_at' in self.city.__dict__)
         self.assertTrue('updated_at' in self.city.__dict__)
