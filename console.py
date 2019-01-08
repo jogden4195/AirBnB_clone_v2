@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
             my_list = line.split(" ")
             # print("my_list: ", my_list)
             obj = eval("{}()".format(my_list[0]))
-            if len(my_list) > 1:
+            if len(my_list) >= 1:
                 arg_dict = {}
                 for i in my_list[1:]:
                     arg = i.split('=')
