@@ -124,7 +124,6 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd('create State name="California"')
             self.assertEqual(
                 "(hbnb) [[State] (", f.getvalue()[:17])
-        
 
 
     def test_show(self):
@@ -269,6 +268,13 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("User.update(" + my_id + ", name)")
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
+
+    def test_new_tests(self):
+        """Test alternate destroy command inpout"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("create Place city_id="0001")
+            self.assertTrue(f.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
