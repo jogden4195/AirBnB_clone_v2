@@ -139,6 +139,16 @@ class HBNBCommand(cmd.Cmd):
             NameError: when there is no object taht has the name
         """
         objects = storage.all()
+
+        """ TESTING FOR STATES
+        print("OBJECTS:", objects)
+        cities = []
+        for k, v in objects.items():
+            if "City" in k and v.state_id == state.id:
+                cities.append(v)
+        return cities
+        """
+
         my_list = []
         if not line:
             for key in objects:
