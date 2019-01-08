@@ -3,14 +3,13 @@ import json
 from os import environ
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 from models.user import User
 from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
 
 class DBStorage:
     """ SQL database class
@@ -27,9 +26,10 @@ class DBStorage:
             environ['HBNB_MYSQL_HOST'],
             environ['HBNB_MYSQL_DB']),
                                pool_pre_ping=True)
-        if environ['HBNB_ENV'] == 'test':
-            # This might not be correct tbh
-            drop_all(self.__engine)
+        if 'HBNB_ENV' in environ.keys():
+            if environ['HBNB_ENV'] == 'test':
+                # This might not be correct tbh
+                drop_all(self.__engine)
         # Does session go here?
         # self.__session = sessionmaker(bind=self.__engine)
 
@@ -39,9 +39,10 @@ class DBStorage:
         # self.__session = sessionmaker(bind=self.__engine)
         my_dict = {}
         if cls is None:
-            for obj in self.__session.all():
-                key = obj.__class__.__name__ + '.' + str(obj.id)
-                my_dict[key] = obj
+            for c in [State, City]:
+                for obj in self.__session.query(c).all():
+                    key = obj.__class__.__name__ + '.' + str(obj.id)
+                    my_dict[key] = obj
         else:
             for obj in self.__session.query(cls).all():
                 key = cls + '.' + str(obj.id)
