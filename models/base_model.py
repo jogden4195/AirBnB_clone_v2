@@ -21,12 +21,12 @@ class BaseModel:
 
     created_at = Column('created_at',
                         DateTime,
-                        default=datetime.datetime.utcnow,
+                        default=datetime.datetime.utcnow(),
                         nullable=False)
 
     updated_at = Column('updated_at',
                         DateTime,
-                        default=datetime.datetime.utcnow,
+                        default=datetime.datetime.utcnow(),
                         nullable=False)
 
     def __init__(self, *args, **kwargs):
@@ -49,7 +49,6 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.datetime.now()
-            # models.storage.new(self)
 
     def __str__(self):
         """returns a string
@@ -77,10 +76,10 @@ class BaseModel:
             returns a dictionary of all the key values in __dict__
         """
         my_dict = dict(self.__dict__)
-        try:
+        if "_sa_instance_state" in my_dict.keys():
             del my_dict["_sa_instance_state"]
-        except KeyError:
-            pass
+        # except KeyError:
+            # pass
         my_dict["__class__"] = str(type(self).__name__)
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
