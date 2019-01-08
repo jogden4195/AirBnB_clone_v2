@@ -89,7 +89,7 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "[[User]", f.getvalue()[:7])
 
-    def test_create_updated_v2(self):
+    def test_create_updated_v2_1(self):
         """Test create command input
             but the newly updated one.
         """
@@ -108,10 +108,23 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "[[User]", f.getvalue()[:7])
 
+    def test_create_updated_v2_2(self):
+        """Test create command input
+            but the newly updated one.
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd('all')
+            self.assertEqual(
+                "[]", f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd('all State')
+            self.assertEqual(
+                "[]", f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd('create State name="California"')
             self.assertEqual(
-                "(hbnb) ", f.getvalue()[:7])
+                "(hbnb) [[State] (", f.getvalue()[:17])
+        
 
 
     def test_show(self):
