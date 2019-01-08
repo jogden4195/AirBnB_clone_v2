@@ -30,15 +30,10 @@ class DBStorage:
                                pool_pre_ping=True)
         if 'HBNB_ENV' in environ.keys():
             if environ['HBNB_ENV'] == 'test':
-                # This might not be correct tbh
-                drop_all(self.__engine)
-        # Does session go here?
-        # self.__session = sessionmaker(bind=self.__engine)
+                Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
         """ returns a dictionary of all objects """
-        # Or here???
-        # self.__session = sessionmaker(bind=self.__engine)
         my_dict = {}
         if cls is None:
             for c in [State, City]:
