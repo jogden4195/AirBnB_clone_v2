@@ -60,3 +60,16 @@ class BaseModel:
         my_dict["created_at"] = self.created_at.isoformat()
         my_dict["updated_at"] = self.updated_at.isoformat()
         return my_dict
+
+
+        store storages
+        loop and tokenize to get first word
+        if the word is City an dstate id matches,
+        append that to a listself.reutrn list
+        obj = storage.all()
+        listo = []
+        for key, value in obj.items():
+            tokenized = key.split(".")[0]
+            if tokenized == "city" and value["state_id"] == self.id:
+                listo.append(value)
+        return listo
