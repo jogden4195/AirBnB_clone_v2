@@ -20,9 +20,9 @@ class State(BaseModel):
     def cities(self):
         """ wut do this do? it tassteses like a hot plate
         """
-        for k,v in something.item():
+        """for k,v in something.item():
             if alwjkeawe
                 then?
             if this.stateid is the state it then
         reurn the city with state id at ?
- 
+        """
