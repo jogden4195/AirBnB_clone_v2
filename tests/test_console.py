@@ -126,7 +126,7 @@ class TestConsole(unittest.TestCase):
                 "(hbnb) [[State] (", f.getvalue()[:17])
        with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd('create State name="California"')
-            self.assertTrue(f.getvalue()) 
+            self.assertTrue(f.getvalue())
         with patch('sys.stdout', new=StringIO()) as f:
             self.consol.onecmd('create state')
             self.assertEqual("** class doesn't exist **\n", f.getvalue())
@@ -274,6 +274,13 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd("User.update(" + my_id + ", name)")
             self.assertEqual(
                 "** value missing **\n", f.getvalue())
+
+    def test_new_tests(self):
+        """Test alternate destroy command inpout"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd("create Place city_id="0001")
+            self.assertTrue(f.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()

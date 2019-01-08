@@ -16,6 +16,7 @@ class BaseModel:
     """
     id = Column('id',
                 String(60),
+                unique=True;
                 nullable=False,
                 primary_key=True)
 
