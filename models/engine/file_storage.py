@@ -66,10 +66,9 @@ class FileStorage:
     def delete(self, obj=None):
         """ deletes an object from __objects if it is inside
         """
-        try:
-            key = "{}.{}".format(type(obj).__name__, obj.id)
-            del self.__objects[key]
-            self.save()
-        except:
-            print("BRING SAD PEPE AND THICC SEAHORSE BACK")
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        del self.__objects[key]
+        self.save()
+        # except:
+        # print("BRING SAD PEPE AND THICC SEAHORSE BACK")
         # print("THE OBJECT: {}".format(obj))
