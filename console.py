@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
             if not line:
                 raise SyntaxError()
             my_list = line.split(" ")
-            print("my_list: ", my_list)
+            # print("my_list: ", my_list)
             obj = eval("{}()".format(my_list[0]))
             if len(my_list) > 1:
                 arg_dict = {}
