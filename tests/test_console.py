@@ -124,6 +124,12 @@ class TestConsole(unittest.TestCase):
             self.consol.onecmd('create State name="California"')
             self.assertEqual(
                 "(hbnb) [[State] (", f.getvalue()[:17])
+       with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd('create State name="California"')
+            self.assertTrue(f.getvalue())
+        with patch('sys.stdout', new=StringIO()) as f:
+            self.consol.onecmd('create state')
+            self.assertEqual("** class doesn't exist **\n", f.getvalue())
 
 
     def test_show(self):
