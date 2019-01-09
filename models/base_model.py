@@ -14,19 +14,16 @@ class BaseModel:
     """This class will defines all common attributes/methods
     for other classes
     """
-    id = Column('id',
-                String(60),
+    id = Column(String(60),
                 unique=True,
                 nullable=False,
                 primary_key=True)
 
-    created_at = Column('created_at',
-                        DateTime,
+    created_at = Column(DateTime,
                         default=datetime.datetime.utcnow(),
                         nullable=False)
 
-    updated_at = Column('updated_at',
-                        DateTime,
+    updated_at = Column(DateTime,
                         default=datetime.datetime.utcnow(),
                         nullable=False)
 
