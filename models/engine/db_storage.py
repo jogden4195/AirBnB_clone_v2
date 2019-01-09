@@ -17,7 +17,7 @@ class DBStorage:
     """ SQL database class
     """
     __engine = None
-    __Session = None
+    __session = None
 
     def __init__(self):
         """ the initializersz
@@ -28,6 +28,10 @@ class DBStorage:
             environ['HBNB_MYSQL_HOST'],
             environ['HBNB_MYSQL_DB']),
                                pool_pre_ping=True)
+        Session = sessionmaker(
+            bind=self.__engine)
+        self.__session = Session()
+
         if 'HBNB_ENV' in environ.keys():
             if environ['HBNB_ENV'] == 'test':
                 Base.metadata.drop_all(bind=self.__engine)
