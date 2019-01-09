@@ -28,8 +28,8 @@ class User(BaseModel, Base):
                 String(128),
                 nullable=False)
     places = relationship("Place",
-                        backref="user",
-                        cascade="all, delete-orphan")
+                          backref="user",
+                          cascade="all, delete-orphan")
     reviews = relationship("Review",
-                        backref="user",
-                        cascade="all, delete-orphan") 
+                           backref="user",
+                           cascade="all, delete-orphan")
