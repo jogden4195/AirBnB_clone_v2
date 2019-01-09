@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
                     if v.isdigit():
                         if "." in v:
                             v = float(v)
-                        else:
+                        elif "_id" not in k:
                             v = int(v)
                 setattr(obj, k, v)
             obj.save()
