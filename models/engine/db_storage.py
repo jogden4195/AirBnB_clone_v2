@@ -40,7 +40,7 @@ class DBStorage:
         """ returns a dictionary of all objects """
         my_dict = {}
         if cls is None:
-            for c in [State, City]:
+            for c in [State, City, User, Amenity, Place, Review]:
                 for obj in self.__session.query(c).all():
                     key = obj.__class__.__name__ + '.' + str(obj.id)
                     my_dict[key] = obj
