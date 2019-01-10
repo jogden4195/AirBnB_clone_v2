@@ -14,10 +14,10 @@ class Review(BaseModel, Base):
     """
     __tablename__ = "reviews"
     text = Column(String(128),
-                        nullable=False)
+                  nullable=False)
     place_id = Column(String(60),
-                        ForeignKey("places.id"),
-                        nullable=False)
+                      ForeignKey("places.id"),
+                      nullable=False)
     user_id = Column(String(60),
-                        ForeignKey("users.id"),
-                        nullable=False)
+                     ForeignKey("users.id"),
+                     nullable=False)
