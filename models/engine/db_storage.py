@@ -28,9 +28,6 @@ class DBStorage:
             environ['HBNB_MYSQL_HOST'],
             environ['HBNB_MYSQL_DB']),
                                pool_pre_ping=True)
-        Session = sessionmaker(
-            bind=self.__engine)
-        self.__session = Session()
 
         if 'HBNB_ENV' in environ.keys():
             if environ['HBNB_ENV'] == 'test':
