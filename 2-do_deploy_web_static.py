@@ -4,7 +4,7 @@ from fabric.contrib import files
 import datetime
 import ntpath
 
-
+env.user = 'ubuntu'
 env.hosts = ['35.229.84.121', '34.73.176.33']
 
 
@@ -41,8 +41,6 @@ def do_deploy(archive_path):
     run(command)
     command = 'sudo rm -rf ' + target + '/web_static'
     run(command)
-    command = 'sudo rm -rf /data/web_static/current'
-    run(command)
 
     # Creating new sym link
     command = 'sudo ln -sfn ' + target + ' /data/web_static/current'
@@ -50,4 +48,5 @@ def do_deploy(archive_path):
     if link.failed:
         return False
 
+    print("New version deployed!")
     return True
