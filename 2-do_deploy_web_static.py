@@ -19,15 +19,21 @@ def do_deploy(archive_path):
         return False
 
     # Uploading archive to the /tmp/
-    put(archive_path, "/tmp/")
+    upload = put(archive_path, "/tmp/")
+    if upload.failed:
+        return False
     filename = ntpath.basename(archive_path)
 
     # Creating dir to put archive files & uncompressing them there
     target = "/data/web_static/releases/" + filename[:-4]
     command = "mkdir -p " + target
-    run(command)
+    mkdir = run(command)
+    if mkdir.failed:
+        return False
     command = "sudo tar -zxf /tmp/" + filename + " -C " + target
-    run(command)
+    uncompress = run(command)
+    if uncompress.failed:
+        return False
 
     # Remove archive file and delete sym link /data/web_static/current
     command = 'sudo rm /tmp/' + filename
@@ -41,6 +47,8 @@ def do_deploy(archive_path):
 
     # Creating new sym link
     command = 'sudo ln -sfn ' + target + ' /data/web_static/current'
-    run(command)
+    link = run(command)
+    if link.failed:
+        return False
 
     return True
