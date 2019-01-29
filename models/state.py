@@ -18,12 +18,13 @@ class State(BaseModel, Base):
                           backref="states",
                           cascade="all, delete-orphan")
 
-    @property
-    def cities(self):
-        """ getter attribute that connects relationship"""
-        objects = models.storage.all()
-        cities = []
-        for k, v in objects.items():
-            if "City" in k and v.state_id == self.id:
-                cities.append(v)
-        return cities
+    if environ.get("HBNB_TYPE_STORAGE") != db:
+        @property
+        def cities(self):
+            """ getter attribute that connects relationship"""
+            objects = models.storage.all()
+            cities = []
+            for k, v in objects.items():
+                if "City" in k and v.state_id == self.id:
+                    cities.append(v)
+            return cities
