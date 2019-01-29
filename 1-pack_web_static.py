@@ -19,4 +19,5 @@ def do_pack():
     local(command)
     command = "readlink -f " + archive_name
     path = local(command)
+    print("PATH: ", path)
     return path
