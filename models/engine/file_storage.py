@@ -73,3 +73,9 @@ class FileStorage:
         # except:
         # print("BRING SAD PEPE AND THICC SEAHORSE BACK")
         # print("THE OBJECT: {}".format(obj))
+
+    def close(self):
+        """
+        calls reload method for deserializing JSON file
+        """
+        self.reload()
