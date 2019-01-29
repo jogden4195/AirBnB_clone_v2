@@ -42,7 +42,7 @@ class DBStorage:
                     key = obj.__class__.__name__ + '.' + str(obj.id)
                     my_dict[key] = obj
         else:
-            for obj in self.__session.query(cls).all():
+            for obj in self.__session.query(eval(cls)).all():
                 key = cls + '.' + str(obj.id)
                 my_dict[key] = obj
         return my_dict
@@ -66,3 +66,7 @@ class DBStorage:
         self.__session = scoped_session(sessionmaker(
             bind=self.__engine,
             expire_on_commit=False))
+
+    def close(self):
+        """  Calls remove method on the private session attribute """
+        self.__session.remove()
