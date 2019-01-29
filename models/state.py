@@ -3,7 +3,7 @@
 from models.base_model import Base, BaseModel
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship, backref
-
+import models
 
 class State(BaseModel, Base):
     """This is the class for State
@@ -20,9 +20,9 @@ class State(BaseModel, Base):
     @property
     def cities(self):
         """ getter attribute that connects relationship"""
-        objects = storage.all()
+        objects = models.storage.all()
         cities = []
-        for k, v in my_dict.items():
+        for k, v in objects.items():
             if "City" in k and v.state_id == self.id:
                 cities.append(v)
         return cities
